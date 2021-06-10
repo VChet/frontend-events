@@ -9,6 +9,7 @@
 
   import "color-calendar/dist/css/theme-glass.css";
 
+  export let fetchComplete: boolean = false;
   let events: Array<EventModel> = [];
   function fetch() {
     return axios
@@ -49,12 +50,13 @@
   }
   onMount(async () => {
     await fetch();
+    fetchComplete = true;
     initCalendar();
   });
 </script>
 
 <main>
-  <div class="filter">
+  <div class="filter" hidden={!fetchComplete}>
     <!-- svelte-ignore a11y-no-onchange -->
     <select
       bind:value={selectedLocation}
@@ -68,7 +70,7 @@
     Результаты: {filteredEvents.length}
   </div>
   <div id="calendar" />
-  <div class="day-events">
+  <div class="day-events" hidden={!fetchComplete}>
     <h2>{dayjs(selectedDate).format("DD.MM.YYYY")}</h2>
     {#each dayEvents as event (event.uid)}
       <div class="event">
