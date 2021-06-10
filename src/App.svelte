@@ -5,23 +5,15 @@
   import { onMount } from "svelte";
 
   import type { EventData } from "color-calendar";
+  import type { EventModel } from "./types/Event";
 
   import "color-calendar/dist/css/theme-glass.css";
 
-  interface Event {
-    uid: string;
-    summary: string;
-    location?: string;
-    description: string;
-    start: string;
-    end: string;
-  }
-
-  let events: Array<Event> = [];
+  let events: Array<EventModel> = [];
   function fetch() {
     return axios
       .get("https://web-standards.ru/calendar.json")
-      .then(({ data }: { data: Array<Event> }) => {
+      .then(({ data }: { data: Array<EventModel> }) => {
         events = data;
       })
       .catch(({ response }) => {
