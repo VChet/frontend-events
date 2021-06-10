@@ -92,7 +92,7 @@
   </div>
 </main>
 
-<style>
+<style lang="scss">
   main {
     display: flex;
     flex-wrap: wrap;
@@ -117,9 +117,9 @@
   }
   .event {
     font-size: 20px;
-  }
-  .event + .event {
-    margin-top: 20px;
+    + .event {
+      margin-top: 20px;
+    }
   }
   h2 {
     margin: 0 0 16px;
