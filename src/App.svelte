@@ -26,8 +26,9 @@
     .filter((event) => event)
     .sort();
 
-  export let selectedLocation: string = "";
+  export let selectedLocation: string = localStorage.getItem("location");
   $: if (typeof selectedLocation !== undefined) {
+    localStorage.setItem("location", selectedLocation);
     setTimeout(initCalendar, 0);
   }
 
