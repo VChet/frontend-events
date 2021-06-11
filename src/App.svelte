@@ -25,7 +25,12 @@
   $: locations = [...new Set(events.map((event) => event.location))]
     .filter((event) => event)
     .sort();
+
   export let selectedLocation: string = "";
+  $: if (typeof selectedLocation !== undefined) {
+    setTimeout(initCalendar, 0);
+  }
+
   $: filteredEvents = selectedLocation
     ? events.filter((event) => event.location === selectedLocation)
     : events;
@@ -48,10 +53,6 @@
       },
     });
   }
-  function clearFilter() {
-    selectedLocation = "";
-    setTimeout(initCalendar, 0);
-  }
   onMount(async () => {
     await fetch();
     fetchComplete = true;
@@ -64,16 +65,13 @@
     <!-- svelte-ignore a11y-no-onchange -->
     <div class="filter">
       <div class="select">
-        <select
-          bind:value={selectedLocation}
-          on:change={() => setTimeout(initCalendar, 0)}
-        >
+        <select bind:value={selectedLocation}>
           <option disabled selected value>Фильтр по городу</option>
           {#each locations as location}
             <option value={location}>{location}</option>
           {/each}
         </select>
-        <button on:click={clearFilter}>❌</button>
+        <button on:click={() => (selectedLocation = "")}>❌</button>
       </div>
       Результаты: {filteredEvents.length}
     </div>
@@ -112,7 +110,6 @@
     margin: 40px auto;
     text-align: center;
   }
-
   .filter {
     display: flex;
     flex-wrap: wrap;
@@ -136,15 +133,15 @@
   }
   .day-events {
     width: 300px;
-  }
-  .event {
-    font-size: 20px;
-    + .event {
-      margin-top: 20px;
+    h2 {
+      margin: 0 0 16px;
+      font-size: 28px;
     }
-  }
-  h2 {
-    margin: 0 0 16px;
-    font-size: 28px;
+    .event {
+      font-size: 20px;
+      + .event {
+        margin-top: 20px;
+      }
+    }
   }
 </style>
