@@ -122,13 +122,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      > * {
+        border-radius: 0;
+        margin-bottom: 0;
+      }
       select {
         flex: 1;
-        border-radius: 0;
       }
       button {
         padding: 10px;
-        border-radius: 0;
       }
     }
   }
