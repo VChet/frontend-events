@@ -36,7 +36,7 @@
     ? events.filter((event) => event.location === selectedLocation)
     : events;
 
-  let calendar: Calendar | null = null;
+  export let calendar: Calendar | null = null;
   export let selectedDate: Date = new Date();
   export let dayEvents: Array<EventData> = [];
   function initCalendar() {
@@ -72,14 +72,21 @@
             <option value={location}>{location}</option>
           {/each}
         </select>
-        <button on:click={() => (selectedLocation = "")}>❌</button>
+        <button on:click={() => (selectedLocation = "")}>
+          <span aria-label="Сброс фильтра">❌</span>
+        </button>
       </div>
       Результаты: {filteredEvents.length}
     </div>
     <div id="calendar" />
   </div>
   <div class="day-events">
-    <h2>{dayjs(selectedDate).format("DD.MM.YYYY")}</h2>
+    <h2>
+      {dayjs(selectedDate).format("DD.MM.YYYY")}
+      <button on:click={() => calendar.reset(new Date())}>
+        <span aria-label="К сегодняшнему дню">📅</span>
+      </button>
+    </h2>
     {#each dayEvents as event (event.uid)}
       <div class="event">
         <h2>
@@ -114,6 +121,7 @@
   .filter {
     display: flex;
     flex-wrap: wrap;
+    gap: 8px;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
@@ -131,6 +139,7 @@
       }
       button {
         padding: 10px;
+        margin: 0;
       }
     }
   }
@@ -139,6 +148,12 @@
     h2 {
       margin: 0 0 16px;
       font-size: 28px;
+      button {
+        margin: 0;
+        padding: 10px;
+        border-radius: 0;
+        font-size: initial;
+      }
     }
     .event {
       font-size: 20px;
