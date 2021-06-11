@@ -48,6 +48,10 @@
       },
     });
   }
+  function clearFilter() {
+    selectedLocation = "";
+    setTimeout(initCalendar, 0);
+  }
   onMount(async () => {
     await fetch();
     fetchComplete = true;
@@ -56,20 +60,25 @@
 </script>
 
 <main>
-  <div class="filter" hidden={!fetchComplete}>
+  <div class="calendar-wrapper" hidden={!fetchComplete}>
     <!-- svelte-ignore a11y-no-onchange -->
-    <select
-      bind:value={selectedLocation}
-      on:change={() => setTimeout(initCalendar, 0)}
-    >
-      <option disabled selected value>Фильтр по городу</option>
-      {#each locations as location}
-        <option value={location}>{location}</option>
-      {/each}
-    </select>
-    Результаты: {filteredEvents.length}
+    <div class="filter">
+      <div class="select">
+        <select
+          bind:value={selectedLocation}
+          on:change={() => setTimeout(initCalendar, 0)}
+        >
+          <option disabled selected value>Фильтр по городу</option>
+          {#each locations as location}
+            <option value={location}>{location}</option>
+          {/each}
+        </select>
+        <button on:click={clearFilter}>❌</button>
+      </div>
+      Результаты: {filteredEvents.length}
+    </div>
+    <div id="calendar" />
   </div>
-  <div id="calendar" />
   <div class="day-events" hidden={!fetchComplete}>
     <h2>{dayjs(selectedDate).format("DD.MM.YYYY")}</h2>
     {#each dayEvents as event (event.uid)}
@@ -99,20 +108,31 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
     gap: 40px;
-    max-width: 75%;
-    margin: auto;
-    margin-bottom: 40px;
-  }
-  @media (max-width: 767px) {
-    main {
-      max-width: none;
-    }
+    margin: 40px auto;
+    text-align: center;
   }
 
   .filter {
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .select {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      select {
+        flex: 1;
+        border-radius: 0;
+      }
+      button {
+        padding: 10px;
+        border-radius: 0;
+      }
+    }
   }
   .day-events {
     width: 300px;
