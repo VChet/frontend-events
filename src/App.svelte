@@ -9,8 +9,8 @@
 
   import "color-calendar/dist/css/theme-glass.css";
 
-  export let fetchComplete: boolean = false;
   let events: Array<EventModel> = [];
+  export let fetchComplete: boolean = false;
   function fetch() {
     return axios
       .get("https://web-standards.ru/calendar.json")
@@ -29,18 +29,18 @@
   export let selectedLocation: string = localStorage.getItem("location");
   $: if (typeof selectedLocation !== undefined) {
     localStorage.setItem("location", selectedLocation);
-    setTimeout(initCalendar, 0);
+    if (calendar) calendar.setEventsData(filteredEvents);
   }
 
   $: filteredEvents = selectedLocation
     ? events.filter((event) => event.location === selectedLocation)
     : events;
 
-  export let selectedDate: Date | null = null;
+  let calendar: Calendar | null = null;
+  export let selectedDate: Date = new Date();
   export let dayEvents: Array<EventData> = [];
-
   function initCalendar() {
-    new Calendar({
+    calendar = new Calendar({
       id: "#calendar",
       eventsData: filteredEvents,
       startWeekday: 1,
@@ -54,17 +54,17 @@
       },
     });
   }
+
   onMount(async () => {
+    initCalendar();
     await fetch();
     fetchComplete = true;
-    initCalendar();
   });
 </script>
 
 <main>
-  <div class="calendar-wrapper" hidden={!fetchComplete}>
-    <!-- svelte-ignore a11y-no-onchange -->
-    <div class="filter">
+  <div class="calendar-wrapper">
+    <div class="filter" hidden={!locations.length}>
       <div class="select">
         <select bind:value={selectedLocation}>
           <option disabled selected value>Фильтр по городу</option>
@@ -78,7 +78,7 @@
     </div>
     <div id="calendar" />
   </div>
-  <div class="day-events" hidden={!fetchComplete}>
+  <div class="day-events">
     <h2>{dayjs(selectedDate).format("DD.MM.YYYY")}</h2>
     {#each dayEvents as event (event.uid)}
       <div class="event">
