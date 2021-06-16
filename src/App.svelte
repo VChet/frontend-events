@@ -147,6 +147,15 @@
     </section>
   {/if}
 </main>
+<footer>
+  <a href="https://web-standards.ru/calendar.ics" rel="noopener">iCal</a>
+  <a href="https://github.com/VChet/frontend-events" rel="noopener">
+    Репозиторий
+  </a>
+  <a href="https://github.com/web-standards-ru/calendar" rel="noopener">
+    Мероприятия
+  </a>
+</footer>
 
 <style lang="scss">
   main {
@@ -223,5 +232,11 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
     }
+  }
+  footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px 20px;
+    flex-wrap: wrap;
   }
 </style>
