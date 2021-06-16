@@ -119,31 +119,33 @@
       </ul>
     </div>
   </section>
-  <section class="upcoming-events">
-    <h1>Все предстоящие мероприятия</h1>
-    <ul class="events-wrapper">
-      {#each upcomingEvents as event (event.uid)}
-        <li class="event">
-          <h2>{dayjs(event.start).format("DD.MM.YYYY")}</h2>
-          <h3>
-            <a href={event.description} rel="noopener">{event.summary}</a>
-          </h3>
-          <div>{event.location}</div>
-          <div>
-            {#if dayjs(event.start).isSame(event.end, "day")}
-              {dayjs(event.start).format("HH:mm")}
-              &mdash;
-              {dayjs(event.end).format("HH:mm")}
-            {:else}
-              {dayjs(event.start).format("DD.MM HH:mm")}
-              &mdash;
-              {dayjs(event.end).format("DD.MM HH:mm")}
-            {/if}
-          </div>
-        </li>
-      {/each}
-    </ul>
-  </section>
+  {#if upcomingEvents.length}
+    <section class="upcoming-events">
+      <h1>Все предстоящие мероприятия</h1>
+      <ul class="events-wrapper">
+        {#each upcomingEvents as event (event.uid)}
+          <li class="event">
+            <h2>{dayjs(event.start).format("DD.MM.YYYY")}</h2>
+            <h3>
+              <a href={event.description} rel="noopener">{event.summary}</a>
+            </h3>
+            <div>{event.location}</div>
+            <div>
+              {#if dayjs(event.start).isSame(event.end, "day")}
+                {dayjs(event.start).format("HH:mm")}
+                &mdash;
+                {dayjs(event.end).format("HH:mm")}
+              {:else}
+                {dayjs(event.start).format("DD.MM HH:mm")}
+                &mdash;
+                {dayjs(event.end).format("DD.MM HH:mm")}
+              {/if}
+            </div>
+          </li>
+        {/each}
+      </ul>
+    </section>
+  {/if}
 </main>
 
 <style lang="scss">
