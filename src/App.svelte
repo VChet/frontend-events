@@ -80,7 +80,7 @@
             {/each}
           </select>
           <button on:click={() => (selectedLocation = "")}>
-            <span aria-label="Сброс фильтра">❌</span>
+            <span aria-label="Сброс фильтра" title="Сброс фильтра">❌</span>
           </button>
         </div>
         Результаты: {filteredEvents.length}
@@ -91,35 +91,39 @@
       <h2>
         {dayjs(selectedDate).format("DD.MM.YYYY")}
         <button on:click={() => calendar.reset(new Date())}>
-          <span aria-label="К сегодняшнему дню">📅</span>
+          <span aria-label="К сегодняшнему дню" title="К сегодняшнему дню">
+            📅
+          </span>
         </button>
       </h2>
-      {#each dayEvents as event (event.uid)}
-        <div class="event">
-          <h3>
-            <a href={event.description} rel="noopener">{event.summary}</a>
-          </h3>
-          <div>{event.location}</div>
-          <div>
-            {#if dayjs(event.start).isSame(event.end, "day")}
-              {dayjs(event.start).format("HH:mm")}
-              &mdash;
-              {dayjs(event.end).format("HH:mm")}
-            {:else}
-              {dayjs(event.start).format("DD.MM HH:mm")}
-              &mdash;
-              {dayjs(event.end).format("DD.MM HH:mm")}
-            {/if}
-          </div>
-        </div>
-      {/each}
+      <ul>
+        {#each dayEvents as event (event.uid)}
+          <li class="event">
+            <h3>
+              <a href={event.description} rel="noopener">{event.summary}</a>
+            </h3>
+            <div>{event.location}</div>
+            <div>
+              {#if dayjs(event.start).isSame(event.end, "day")}
+                {dayjs(event.start).format("HH:mm")}
+                &mdash;
+                {dayjs(event.end).format("HH:mm")}
+              {:else}
+                {dayjs(event.start).format("DD.MM HH:mm")}
+                &mdash;
+                {dayjs(event.end).format("DD.MM HH:mm")}
+              {/if}
+            </div>
+          </li>
+        {/each}
+      </ul>
     </div>
   </section>
   <section class="upcoming-events">
     <h1>Все предстоящие</h1>
-    <div class="events-wrapper">
+    <ul class="events-wrapper">
       {#each upcomingEvents as event (event.uid)}
-        <div class="event">
+        <li class="event">
           <h2>{dayjs(event.start).format("DD.MM.YYYY")}</h2>
           <h3>
             <a href={event.description} rel="noopener">{event.summary}</a>
@@ -136,9 +140,9 @@
               {dayjs(event.end).format("DD.MM HH:mm")}
             {/if}
           </div>
-        </div>
+        </li>
       {/each}
-    </div>
+    </ul>
   </section>
 </main>
 
@@ -156,6 +160,10 @@
   }
   h3 {
     margin: 0 0 8px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
   }
   .calendar-events {
     display: flex;
