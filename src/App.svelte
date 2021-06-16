@@ -120,7 +120,7 @@
     </div>
   </section>
   <section class="upcoming-events">
-    <h1>Все предстоящие</h1>
+    <h1>Все предстоящие мероприятия</h1>
     <ul class="events-wrapper">
       {#each upcomingEvents as event (event.uid)}
         <li class="event">
@@ -151,15 +151,15 @@
     margin: 40px auto;
   }
   h1 {
-    margin: 0 0 16px;
+    margin: 0 0 20px;
     text-align: center;
   }
   h2 {
-    margin: 0 0 12px;
+    margin: 0 0 16px;
     font-size: 28px;
   }
   h3 {
-    margin: 0 0 8px;
+    margin: 0 0 12px;
   }
   ul {
     list-style: none;
