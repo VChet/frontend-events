@@ -121,7 +121,7 @@
   </section>
   {#if upcomingEvents.length}
     <section class="upcoming-events">
-      <h1>Все предстоящие мероприятия</h1>
+      <h1>Предстоящие мероприятия</h1>
       <ul class="events-wrapper">
         {#each upcomingEvents as event (event.uid)}
           <li class="event">
