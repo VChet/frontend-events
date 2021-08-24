@@ -1,12 +1,18 @@
 <script lang="ts">
   import axios from "axios";
+
   import dayjs from "dayjs";
+  import localeData from "dayjs/plugin/localeData";
+  dayjs.extend(localeData);
+  import "dayjs/locale/ru";
+  dayjs.locale("ru");
+
   import Calendar from "color-calendar";
+  import "color-calendar/dist/css/theme-glass.css";
+
   import { onMount } from "svelte";
 
   import type { EventModel } from "./types/Event";
-
-  import "color-calendar/dist/css/theme-glass.css";
 
   let events: Array<EventModel> = [];
   export let fetchComplete: boolean = false;
@@ -47,11 +53,13 @@
     calendar = new Calendar({
       id: "#calendar",
       eventsData: filteredEvents,
-      startWeekday: 1,
       theme: "glass",
       primaryColor: "#41adff",
       headerBackgroundColor: "#FFFFFF",
       headerColor: "#000000",
+      startWeekday: 1,
+      customMonthValues: dayjs.months(),
+      customWeekdayValues: dayjs.weekdaysMin(),
       dateChanged: (currentDate: Date, events: Array<any>) => {
         selectedDate = currentDate;
         dayEvents = events;
