@@ -49,7 +49,7 @@
       eventsData: filteredEvents,
       startWeekday: 1,
       theme: "glass",
-      primaryColor: "#16676F",
+      primaryColor: "#41adff",
       headerBackgroundColor: "#FFFFFF",
       headerColor: "#000000",
       dateChanged: (currentDate: Date, events: Array<any>) => {
