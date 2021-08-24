@@ -4,7 +4,6 @@
   import Calendar from "color-calendar";
   import { onMount } from "svelte";
 
-  import type { EventData } from "color-calendar";
   import type { EventModel } from "./types/Event";
 
   import "color-calendar/dist/css/theme-glass.css";
@@ -42,7 +41,7 @@
 
   export let calendar: Calendar | null = null;
   export let selectedDate: Date = new Date();
-  export let dayEvents: Array<EventData> = [];
+  export let dayEvents: Array<any> = [];
 
   function initCalendar() {
     calendar = new Calendar({
@@ -53,7 +52,7 @@
       primaryColor: "#16676F",
       headerBackgroundColor: "#FFFFFF",
       headerColor: "#000000",
-      dateChanged: (currentDate, events) => {
+      dateChanged: (currentDate: Date, events: Array<any>) => {
         selectedDate = currentDate;
         dayEvents = events;
       },
