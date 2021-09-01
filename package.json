@@ -1,7 +1,12 @@
 {
-  "name": "svelte-app",
+  "name": "frontend-events",
   "version": "1.0.0",
-  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VChet/frontend-events.git"
+  },
+  "license": "CC BY-SA 4.0",
+  "author": "VChet",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
