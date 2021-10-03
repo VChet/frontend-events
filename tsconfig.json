@@ -1,9 +1,11 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
 
-  "strict": true,
-  "noUnusedLocals": true,
-  "importsNotUsedAsValues": "error",
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "importsNotUsedAsValues": "error"
+  },
 
   "include": ["src/**/*"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"]

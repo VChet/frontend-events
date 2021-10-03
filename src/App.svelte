@@ -31,8 +31,8 @@
     .filter((event) => event)
     .sort();
 
-  export let selectedLocation: string = localStorage.getItem("location");
-  $: if (typeof selectedLocation !== undefined) {
+  export let selectedLocation: string | null = localStorage.getItem("location");
+  $: if (typeof selectedLocation !== undefined && !!selectedLocation) {
     localStorage.setItem("location", selectedLocation);
     if (calendar) calendar.setEventsData(filteredEvents);
   }
@@ -97,7 +97,7 @@
     <div class="day-events">
       <h2>
         {dayjs(selectedDate).format("DD.MM.YYYY")}
-        <button on:click={() => calendar.reset(new Date())}>
+        <button on:click={() => calendar?.reset(new Date())}>
           <span aria-label="К сегодняшнему дню" title="К сегодняшнему дню">
             📅
           </span>
