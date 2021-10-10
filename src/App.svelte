@@ -27,9 +27,7 @@
       });
   }
 
-  $: locations = [...new Set(events.map((event) => event.location))]
-    .filter((event) => event)
-    .sort();
+  $: locations = [...new Set(events.map((event) => event.location))].filter((event) => event).sort();
 
   export let selectedLocation: string | null = localStorage.getItem("location");
   $: if (typeof selectedLocation !== undefined && !!selectedLocation) {
@@ -37,13 +35,9 @@
     if (calendar) calendar.setEventsData(filteredEvents);
   }
 
-  $: filteredEvents = selectedLocation
-    ? events.filter((event) => event.location === selectedLocation)
-    : events;
+  $: filteredEvents = selectedLocation ? events.filter((event) => event.location === selectedLocation) : events;
 
-  $: upcomingEvents = filteredEvents.filter((event) =>
-    dayjs().isBefore(dayjs(event.start))
-  );
+  $: upcomingEvents = filteredEvents.filter((event) => dayjs().isBefore(dayjs(event.start)));
 
   export let calendar: Calendar | null = null;
   export let selectedDate: Date = new Date();
@@ -98,9 +92,7 @@
       <h2>
         {dayjs(selectedDate).format("DD.MM.YYYY")}
         <button on:click={() => calendar?.reset(new Date())}>
-          <span aria-label="К сегодняшнему дню" title="К сегодняшнему дню">
-            📅
-          </span>
+          <span aria-label="К сегодняшнему дню" title="К сегодняшнему дню">📅</span>
         </button>
       </h2>
       <ul>
@@ -156,12 +148,8 @@
 </main>
 <footer>
   <a href="https://web-standards.ru/calendar.ics" rel="noopener">iCal</a>
-  <a href="https://github.com/VChet/frontend-events" rel="noopener">
-    Репозиторий
-  </a>
-  <a href="https://github.com/web-standards-ru/calendar" rel="noopener">
-    Мероприятия
-  </a>
+  <a href="https://github.com/VChet/frontend-events" rel="noopener">Репозиторий</a>
+  <a href="https://github.com/web-standards-ru/calendar" rel="noopener">Мероприятия</a>
 </footer>
 
 <style lang="scss">

@@ -1,7 +1,4 @@
-if (
-  !sessionStorage.getItem("_swa") &&
-  document.referrer.indexOf(location.protocol + "//" + location.host) !== 0
-) {
+if (!sessionStorage.getItem("_swa") && document.referrer.indexOf(location.protocol + "//" + location.host) !== 0) {
   fetch(
     "https://counter.dev/track?" +
       new URLSearchParams({
