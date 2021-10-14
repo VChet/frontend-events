@@ -29,8 +29,8 @@
 
   $: locations = [...new Set(events.map((event) => event.location))].filter((event) => event).sort();
 
-  export let selectedLocation: string | null = localStorage.getItem("location");
-  $: if (typeof selectedLocation !== undefined && !!selectedLocation) {
+  export let selectedLocation: string = localStorage.getItem("location") ?? "";
+  $: if (typeof selectedLocation !== undefined) {
     localStorage.setItem("location", selectedLocation);
     if (calendar) calendar.setEventsData(filteredEvents);
   }
