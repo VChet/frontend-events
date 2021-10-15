@@ -1,6 +1,4 @@
 <script lang="ts">
-  import axios from "axios";
-
   import dayjs from "dayjs";
   import localeData from "dayjs/plugin/localeData";
   dayjs.extend(localeData);
@@ -15,15 +13,14 @@
   import type { EventModel } from "./types/Event";
 
   let events: Array<EventModel> = [];
-  export let fetchComplete: boolean = false;
-  function fetch() {
-    return axios
-      .get("https://web-standards.ru/calendar.json")
-      .then(({ data }: { data: Array<EventModel> }) => {
+  function fetchEvents() {
+    return fetch("https://web-standards.ru/calendar.json")
+      .then((response) => response.json())
+      .then((data) => {
         events = data;
       })
-      .catch(({ response }) => {
-        console.log(response);
+      .catch((response) => {
+        console.error(response);
       });
   }
 
@@ -63,8 +60,7 @@
 
   onMount(async () => {
     initCalendar();
-    await fetch();
-    fetchComplete = true;
+    await fetchEvents();
   });
 </script>
 

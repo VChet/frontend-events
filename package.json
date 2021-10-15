@@ -32,7 +32,6 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "axios": "^0.22.0",
     "color-calendar": "^1.0.7",
     "dayjs": "^1.10.7",
     "sirv-cli": "^1.0.14"
