@@ -149,24 +149,6 @@
 </footer>
 
 <style lang="scss">
-  main {
-    margin: 40px auto;
-  }
-  h1 {
-    margin: 0 0 20px;
-    text-align: center;
-  }
-  h2 {
-    margin: 0 0 16px;
-    font-size: 28px;
-  }
-  h3 {
-    margin: 0 0 12px;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
   .calendar-events {
     display: flex;
     flex-wrap: wrap;
