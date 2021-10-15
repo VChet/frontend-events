@@ -10,6 +10,8 @@
 
   import { onMount } from "svelte";
 
+  import EventBlock from "./EventBlock.svelte";
+
   import type { EventModel } from "./types/Event";
 
   let events: Array<EventModel> = [];
@@ -87,31 +89,15 @@
     <div class="day-events">
       <h2>
         {dayjs(selectedDate).format("DD.MM.YYYY")}
-        <button on:click={() => calendar?.reset(new Date())}>
-          <span aria-label="К сегодняшнему дню" title="К сегодняшнему дню">📅</span>
-        </button>
+        <button on:click={() => calendar?.reset(new Date())}>На сегодня</button>
       </h2>
-      <ul>
-        {#each dayEvents as event (event.uid)}
-          <li class="event">
-            <h3>
-              <a href={event.description} rel="noopener">{event.summary}</a>
-            </h3>
-            <div>{event.location}</div>
-            <div>
-              {#if dayjs(event.start).isSame(event.end, "day")}
-                {dayjs(event.start).format("HH:mm")}
-                &mdash;
-                {dayjs(event.end).format("HH:mm")}
-              {:else}
-                {dayjs(event.start).format("DD.MM HH:mm")}
-                &mdash;
-                {dayjs(event.end).format("DD.MM HH:mm")}
-              {/if}
-            </div>
-          </li>
-        {/each}
-      </ul>
+      {#if dayEvents.length}
+        <ul>
+          {#each dayEvents as event (event.uid)}
+            <EventBlock {event} />
+          {/each}
+        </ul>
+      {/if}
     </div>
   </section>
   {#if upcomingEvents.length}
@@ -119,24 +105,7 @@
       <h1>Предстоящие мероприятия</h1>
       <ul class="events-wrapper">
         {#each upcomingEvents as event (event.uid)}
-          <li class="event">
-            <h2>{dayjs(event.start).format("DD.MM.YYYY")}</h2>
-            <h3>
-              <a href={event.description} rel="noopener">{event.summary}</a>
-            </h3>
-            <div>{event.location}</div>
-            <div>
-              {#if dayjs(event.start).isSame(event.end, "day")}
-                {dayjs(event.start).format("HH:mm")}
-                &mdash;
-                {dayjs(event.end).format("HH:mm")}
-              {:else}
-                {dayjs(event.start).format("DD.MM HH:mm")}
-                &mdash;
-                {dayjs(event.end).format("DD.MM HH:mm")}
-              {/if}
-            </div>
-          </li>
+          <EventBlock {event} showDay={true} />
         {/each}
       </ul>
     </section>
@@ -183,17 +152,23 @@
     }
     .day-events {
       width: 300px;
+      h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
       button {
         margin: 0;
         padding: 10px;
         border-radius: 0;
         font-size: initial;
       }
-      .event {
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
         font-size: 20px;
-        + .event {
-          margin-top: 20px;
-        }
       }
     }
   }
