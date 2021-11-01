@@ -1,0 +1,13 @@
+.color-calendar.glass {
+  --cal-header-color: var(--text-bright) !important;
+  --cal-header-background-color: var(--background) !important;
+  --cal-color-primary: var(--links) !important;
+  color: var(--text-main) !important;
+  box-shadow: none !important;
+}
+.color-calendar.glass .calendar__body {
+  background-color: var(--background-alt) !important;
+}
+.color-calendar.glass .calendar__days .calendar__day-other {
+  color: var(--text-bright) !important;
+}

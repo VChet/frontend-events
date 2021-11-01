@@ -5,3 +5,5 @@ import "dayjs/locale/ru";
 dayjs.locale("ru");
 
 import "color-calendar/dist/css/theme-glass.css";
+
+import "./calendar.css";
