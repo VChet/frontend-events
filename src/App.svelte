@@ -1,12 +1,8 @@
 <script lang="ts">
-  import dayjs from "dayjs";
-  import localeData from "dayjs/plugin/localeData";
-  dayjs.extend(localeData);
-  import "dayjs/locale/ru";
-  dayjs.locale("ru");
+  import "./libs";
 
+  import dayjs from "dayjs";
   import Calendar from "color-calendar";
-  import "color-calendar/dist/css/theme-glass.css";
 
   import { onMount } from "svelte";
 
