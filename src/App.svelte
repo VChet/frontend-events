@@ -1,6 +1,4 @@
 <script lang="ts">
-  import "./libs";
-
   import dayjs from "dayjs";
   import Calendar from "color-calendar";
 
