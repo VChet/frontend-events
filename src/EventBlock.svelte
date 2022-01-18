@@ -7,14 +7,11 @@
   }
 
   export let event: EventModel | null = null;
-  export let showDay: boolean = false;
 </script>
 
 {#if event}
   <li class="event">
-    {#if showDay}
-      <h2>{dayjs(event.start).format("DD.MM.YYYY")}</h2>
-    {/if}
+    <slot name="header" />
     <h3>
       <a href={event.description} rel="noopener">{event.summary}</a>
     </h3>

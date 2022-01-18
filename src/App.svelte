@@ -30,6 +30,9 @@
 
   $: filteredEvents = selectedLocation ? events.filter((event) => event.location === selectedLocation) : events;
 
+  $: ongoingEvents = filteredEvents
+    .filter((event) => dayjs().isBetween(dayjs(event.start), dayjs(event.end), "day", "[]"))
+    .sort((a, b) => (dayjs(a.end).isBefore(b.end) ? -1 : 1));
   $: upcomingEvents = filteredEvents.filter((event) => dayjs().isBefore(dayjs(event.start)));
 
   export let calendar: Calendar | null = null;
@@ -91,12 +94,26 @@
       {/if}
     </div>
   </section>
+  {#if ongoingEvents.length}
+    <section class="ongoing-events">
+      <h1>Текущие мероприятия</h1>
+      <ul class="events-wrapper">
+        {#each ongoingEvents as event (event.uid)}
+          <EventBlock {event}>
+            <h2 slot="header">до {dayjs(event.end).format("DD.MM.YYYY")}</h2>
+          </EventBlock>
+        {/each}
+      </ul>
+    </section>
+  {/if}
   {#if upcomingEvents.length}
     <section class="upcoming-events">
       <h1>Предстоящие мероприятия</h1>
       <ul class="events-wrapper">
         {#each upcomingEvents as event (event.uid)}
-          <EventBlock {event} showDay={true} />
+          <EventBlock {event}>
+            <h2 slot="header">{dayjs(event.start).format("DD.MM.YYYY")}</h2>
+          </EventBlock>
         {/each}
       </ul>
     </section>
@@ -163,6 +180,7 @@
       }
     }
   }
+  .ongoing-events,
   .upcoming-events {
     text-align: center;
     margin-top: 60px;
