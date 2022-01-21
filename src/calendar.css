@@ -2,12 +2,22 @@
   --cal-header-color: var(--text-bright) !important;
   --cal-header-background-color: var(--background) !important;
   --cal-color-primary: var(--links) !important;
+  --cal-drop-shadow: none !important;
   color: var(--text-main) !important;
-  box-shadow: none !important;
 }
-.color-calendar.glass .calendar__body {
+.color-calendar.glass .calendar__body,
+.color-calendar.glass .calendar__picker {
   background-color: var(--background-alt) !important;
 }
-.color-calendar.glass .calendar__days .calendar__day-other {
+.color-calendar.glass .calendar__picker .calendar__picker-year-option,
+.color-calendar.glass .calendar__picker .calendar__picker-month-option {
+  color: var(--text-main) !important;
+}
+.color-calendar.glass .calendar__days .calendar__day-other,
+.color-calendar.glass .calendar__picker .calendar__picker-month-selected,
+.color-calendar.glass .calendar__picker .calendar__picker-year-selected {
   color: var(--text-bright) !important;
+}
+.color-calendar.glass .calendar__picker .calendar__picker-year-arrow:hover {
+  background-color: var(--button-hover) !important;
 }
