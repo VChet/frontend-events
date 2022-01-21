@@ -44,6 +44,7 @@
       id: "#calendar",
       eventsData: filteredEvents,
       theme: "glass",
+      layoutModifiers: ["month-left-align"],
       startWeekday: 1,
       customMonthValues: dayjs.months(),
       customWeekdayValues: dayjs.weekdaysMin(),
@@ -91,12 +92,14 @@
             <EventBlock {event} />
           {/each}
         </ul>
+      {:else}
+        Нет событий
       {/if}
     </div>
   </section>
   {#if ongoingEvents.length}
     <section class="ongoing-events">
-      <h1>Текущие мероприятия</h1>
+      <h1>Текущие</h1>
       <ul class="events-wrapper">
         {#each ongoingEvents as event (event.uid)}
           <EventBlock {event}>
@@ -108,7 +111,7 @@
   {/if}
   {#if upcomingEvents.length}
     <section class="upcoming-events">
-      <h1>Предстоящие мероприятия</h1>
+      <h1>Предстоящие</h1>
       <ul class="events-wrapper">
         {#each upcomingEvents as event (event.uid)}
           <EventBlock {event}>
