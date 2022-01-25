@@ -11,7 +11,8 @@ import "dayjs/locale/ru";
 dayjs.locale("ru");
 
 import "color-calendar/dist/css/theme-glass.css";
-import "./calendar.css";
+import "./styles/global.css";
+import "./styles/calendar.css";
 
 const app = new App({ target: document.body });
 
