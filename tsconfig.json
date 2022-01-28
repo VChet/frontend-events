@@ -10,7 +10,9 @@
     "importsNotUsedAsValues": "error",
     "baseUrl": ".",
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "types": ["vite/client", "vite-plugin-pwa/client"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "WebWorker"]
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }
