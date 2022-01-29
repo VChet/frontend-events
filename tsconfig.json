@@ -7,8 +7,6 @@
     "module": "esnext",
     "strict": true,
     "noUnusedLocals": true,
-    "importsNotUsedAsValues": "error",
-    "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
     "types": ["vite/client", "vite-plugin-pwa/client"],
