@@ -1,12 +1,9 @@
 <script lang="ts">
   import dayjs from "dayjs";
   import Calendar from "color-calendar";
-
   import { onMount } from "svelte";
-
   import EventBlock from "./EventBlock.svelte";
-
-  import type { EventModel } from "./types/Event";
+  import type { EventModel } from "@/types/Event";
 
   let events: Array<EventModel> = [];
   function fetchEvents() {
@@ -21,7 +18,6 @@
   }
 
   $: locations = [...new Set(events.map((event) => event.location))].filter((event) => event).sort();
-
   export let selectedLocation: string = localStorage.getItem("location") ?? "";
   $: if (typeof selectedLocation !== undefined) {
     localStorage.setItem("location", selectedLocation);
@@ -29,7 +25,6 @@
   }
 
   $: filteredEvents = selectedLocation ? events.filter((event) => event.location === selectedLocation) : events;
-
   $: ongoingEvents = filteredEvents
     .filter((event) => dayjs().isBetween(dayjs(event.start), dayjs(event.end), "day", "[]"))
     .sort((a, b) => (dayjs(a.end).isBefore(b.end) ? -1 : 1));
@@ -122,13 +117,10 @@
     </section>
   {/if}
 </main>
-<footer>
-  <a href="https://web-standards.ru/calendar.ics" rel="noopener">iCal</a>
-  <a href="https://github.com/VChet/frontend-events" rel="noopener">Репозиторий</a>
-  <a href="https://github.com/web-standards-ru/calendar" rel="noopener">Мероприятия</a>
-</footer>
 
 <style lang="scss">
+  @import "color-calendar/dist/css/theme-glass.css";
+  @import "@/styles/calendar.css";
   .calendar-events {
     display: flex;
     flex-wrap: wrap;
@@ -192,11 +184,5 @@
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
     }
-  }
-  footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px 20px;
-    flex-wrap: wrap;
   }
 </style>

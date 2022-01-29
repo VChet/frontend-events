@@ -10,7 +10,8 @@
     "allowJs": true,
     "checkJs": true,
     "types": ["vite/client", "vite-plugin-pwa/client"],
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "WebWorker"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "WebWorker"],
+    "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

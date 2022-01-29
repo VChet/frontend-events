@@ -1,6 +1,6 @@
 <script lang="ts">
   import dayjs from "dayjs";
-  import type { EventModel } from "./types/Event";
+  import type { EventModel } from "@/types/Event";
 
   function formatLongDate(date: string) {
     return dayjs(date).format(dayjs(date).hour() === 5 ? "DD MMM" : "DD MMM HH:mm");
