@@ -14,6 +14,7 @@ const pwaOptions: Partial<VitePWAOptions> = {
     name: "Календарь событий по фронтенду",
     short_name: "Frontend Events",
     description: "Конференции, митапы и другие события по фронтенду в одном календаре",
+    theme_color: "#202b38",
     icons: [
       {
         src: "pwa-192x192.png",
