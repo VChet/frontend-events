@@ -15,23 +15,10 @@ const pwaOptions: Partial<VitePWAOptions> = {
     short_name: "Frontend Events",
     description: "Конференции, митапы и другие события по фронтенду в одном календаре",
     theme_color: "#202b38",
+    background_color: "#202b38",
     icons: [
-      {
-        src: "pwa-192x192.png",
-        sizes: "192x192",
-        type: "image/png",
-      },
-      {
-        src: "pwa-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-      },
-      {
-        src: "pwa-512x512.png",
-        sizes: "512x512",
-        type: "image/png",
-        purpose: "any maskable",
-      },
+      { src: "/icon-192x192.png", type: "image/png", sizes: "192x192" },
+      { src: "/icon-512x512.png", type: "image/png", sizes: "512x512" },
     ],
   },
   workbox: { sourcemap: true },
