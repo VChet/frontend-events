@@ -79,7 +79,7 @@
     <div class="day-events">
       <h2>
         {dayjs(selectedDate).format("DD.MM.YYYY")}
-        <button on:click={() => calendar?.reset(new Date())}>На сегодня</button>
+        <button on:click={() => calendar?.setDate(new Date())}>На сегодня</button>
       </h2>
       {#if dayEvents.length}
         <ul>
@@ -110,7 +110,11 @@
       <ul class="events-wrapper">
         {#each upcomingEvents as event (event.uid)}
           <EventBlock {event}>
-            <h2 slot="header">{dayjs(event.start).format("DD.MM.YYYY")}</h2>
+            <h2 slot="header">
+              <button class="event-date" on:click={() => calendar?.setDate(dayjs(event.start).toDate())}>
+                {dayjs(event.start).format("DD.MM.YYYY")}
+              </button>
+            </h2>
           </EventBlock>
         {/each}
       </ul>
@@ -183,6 +187,16 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
+      .event-date {
+        margin: 0;
+        padding: 0;
+        background: none;
+        text-decoration: underline;
+        &:hover,
+        &:focus {
+          text-decoration: none;
+        }
+      }
     }
   }
 </style>
