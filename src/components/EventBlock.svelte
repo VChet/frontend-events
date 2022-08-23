@@ -15,7 +15,9 @@
     <h3>
       <a href={event.description} rel="noopener">{event.summary}</a>
     </h3>
-    <div>{event.location}</div>
+    {#if event.location}
+      <div>{event.location}</div>
+    {/if}
     <div>
       {#if dayjs(event.start).isSame(event.end, "day")}
         {dayjs(event.start).format("HH:mm")} &mdash; {dayjs(event.end).format("HH:mm")}
