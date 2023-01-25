@@ -26,11 +26,4 @@
 
 <style lang="scss">
   @import "@/styles/global.css";
-
-  footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px 20px;
-    flex-wrap: wrap;
-  }
 </style>

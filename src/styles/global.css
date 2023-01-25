@@ -1,5 +1,18 @@
+body {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  margin: 0 auto;
+}
 main {
   margin: 40px auto;
+}
+footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px 20px;
+  flex-wrap: wrap;
+  padding: 10px 20px;
 }
 h1 {
   margin: 0 0 20px;
