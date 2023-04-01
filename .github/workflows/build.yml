@@ -1,4 +1,4 @@
-name: svelte-check
+name: build
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -15,3 +15,4 @@ jobs:
           node-version: "18"
       - run: npm install
       - run: npm run check
+      - run: npm run build
