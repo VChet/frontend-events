@@ -23,7 +23,7 @@
     "svelte-preprocess": "^5.0.3",
     "tslib": "^2.5.0",
     "typescript": "^5.0.3",
-    "vite": "^4.2.1",
+    "vite": "^4.2.3",
     "vite-plugin-pwa": "^0.14.7",
     "workbox-core": "^6.5.4",
     "workbox-precaching": "^6.5.4",
